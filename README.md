@@ -9,8 +9,18 @@
      - Hiện thị thông số học tập 
      - Thời gian làm bài
      - Liên kết với các bài học cần ôn tập
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Cấu trúc Navigate Bar
+- Giới thiệu
+  - Trang chủ
+  - Điều nên biết
+- Lý thuyết
+  - Thư viện
+    - Chương
+- Thực hành
+  - Kiểm tra
 
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ## Available Scripts
 
 In the project directory, you can run:

@@ -5,7 +5,6 @@ import App from "./App";
 import ThemeProvider from "./theme";
 import { SettingsProvider } from "./contexts/SettingsContext";
 import ThemeColorPresets from "./components/ThemeColorPresets";
-import Router from "./routes";
 import "./index.css";
 ReactDOM.render(
     <SettingsProvider>
@@ -13,7 +12,6 @@ ReactDOM.render(
             <ThemeProvider>
                 <ThemeColorPresets>
                     <App />
-                    {/* <Router/> */}
                 </ThemeColorPresets>
             </ThemeProvider>
         </BrowserRouter>

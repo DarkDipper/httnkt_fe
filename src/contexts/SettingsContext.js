@@ -3,7 +3,7 @@ import { createContext } from 'react';
 // hooks
 import useLocalStorage from '../hooks/useLocalStorage';
 // utils
-import getColorPresets, { bluePreset, colorPresets, defaultPreset } from '../utils/getColorPresets';
+import getColorPresets, { bluePreset, colorPresets, defaultPreset,redPreset } from '../utils/getColorPresets';
 // config
 import { defaultSettings } from '../config';
 
@@ -19,7 +19,7 @@ const initialState = {
   onChangeLayout: () => { },
   onResetSetting: () => { },
   onSetPageWidth: () => { },
-  setColor: bluePreset,
+  setColor: redPreset,
   colorOption: [],
 };
 

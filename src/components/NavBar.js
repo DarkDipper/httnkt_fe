@@ -4,13 +4,14 @@ import {
     Typography,
     Drawer,
     Stack,
-    Box,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { BiLeftArrow } from "react-icons/bi";
+import {HiChevronDoubleLeft} from 'react-icons/hi'
 import Scrollbar from "./ScrollBar";
 import { NAVBAR } from "../config";
 import Logo from "../assets/Logo";
+import { NavSectionVertical } from "./nav-section";
+import NavConfig from "./NavConfig"
 const RootStyle = styled("div")(({ theme }) => ({
     [theme.breakpoints.up("lg")]: {
         flexShrink: 0,
@@ -64,17 +65,11 @@ export default function NavBar() {
 
                                 <Logo />
                                 <IconButton>
-                                    <BiLeftArrow />
+                                    <HiChevronDoubleLeft />
                                 </IconButton>
                             </Stack>
                         </Stack>
-                        <Typography sx={{
-                            // textOverflow: 'ellipsis',
-                            // overflow: 'hidden',
-                            // whiteSpace: 'nowrap',
-                        }}>
-                            Call by value & Call by reference trong C++
-                        </Typography>
+                        <NavSectionVertical navConfig={NavConfig} />
                     </Container>
                 </Scrollbar>
             </RootStyle>

@@ -1,17 +1,21 @@
 import {
-    Container,
     IconButton,
-    Typography,
     Drawer,
+    Box,
     Stack,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import {HiChevronDoubleLeft} from 'react-icons/hi'
+import { styled, useTheme } from "@mui/material/styles";
+import { HiChevronDoubleLeft } from "react-icons/hi";
 import Scrollbar from "./ScrollBar";
 import { NAVBAR } from "../config";
 import Logo from "../assets/Logo";
+import { useEffect } from "react";
 import { NavSectionVertical } from "./nav-section";
-import NavConfig from "./NavConfig"
+import navConfig from "./NavConfig";
+import { useLocation } from "react-router-dom";
+import useResponsive from "../hooks/useResponsive";
+import useCollapseDrawer from "../hooks/useCollapseDrawer";
+import cssStyles from '../utils/cssStyles';
 const RootStyle = styled("div")(({ theme }) => ({
     [theme.breakpoints.up("lg")]: {
         flexShrink: 0,
@@ -20,59 +24,122 @@ const RootStyle = styled("div")(({ theme }) => ({
         }),
     },
 }));
-export default function NavBar() {
-    return (
-        <Drawer
-            open
-            variant="persistent"
-            PaperProps={{
-                sx: {
-                    width: NAVBAR.DASHBOARD_WIDTH,
-                    borderRightStyle: "dashed",
-                    bgcolor: "background.default",
-                    transition: (theme) =>
-                        theme.transitions.create("width", {
-                            duration: theme.transitions.duration.standard,
-                        }),
+export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }) {
+    const theme = useTheme();
+
+    const { pathname } = useLocation();
+
+    const isDesktop = useResponsive("up", "lg");
+
+    const {
+        isCollapse,
+        collapseClick,
+        collapseHover,
+        onToggleCollapse,
+        onHoverEnter,
+        onHoverLeave,
+    } = useCollapseDrawer();
+
+    useEffect(() => {
+        if (isOpenSidebar) {
+            onCloseSidebar();
+        }
+    }, [pathname]);
+
+    const renderContent = (
+        <Scrollbar
+            sx={{
+                height: 1,
+                "& .simplebar-content": {
+                    height: 1,
+                    display: "flex",
+                    flexDirection: "column",
                 },
             }}
         >
-            <RootStyle>
-                <Scrollbar
-                    sx={{
-                        height: 1,
-                        "& .simplebar-content": {
-                            height: 1,
-                            display: "flex",
-                            flexDirection: "column",
+            <Stack
+                spacing={3}
+                sx={{
+                    pt: 3,
+                    pb: 2,
+                    px: 2.5,
+                    flexShrink: 0,
+                    ...(isCollapse && { alignItems: "center" }),
+                }}
+            >
+                <Stack
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="space-between"
+                >
+                    <Logo />
+
+                    {isDesktop && !isCollapse && (
+                        <IconButton>
+                            <HiChevronDoubleLeft />
+                        </IconButton>
+                    )}
+                </Stack>
+            </Stack>
+
+            <NavSectionVertical navConfig={navConfig} isCollapse={isCollapse} />
+
+            <Box sx={{ flexGrow: 1 }} />
+        </Scrollbar>
+    );
+
+    return (
+        <RootStyle
+            sx={{
+                width: {
+                    lg: isCollapse
+                        ? NAVBAR.DASHBOARD_COLLAPSE_WIDTH
+                        : NAVBAR.DASHBOARD_WIDTH,
+                },
+                ...(collapseClick && {
+                    position: "absolute",
+                }),
+            }}
+        >
+            {!isDesktop && (
+                <Drawer
+                    open={isOpenSidebar}
+                    onClose={onCloseSidebar}
+                    PaperProps={{ sx: { width: NAVBAR.DASHBOARD_WIDTH } }}
+                >
+                    {renderContent}
+                </Drawer>
+            )}
+
+            {isDesktop && (
+                <Drawer
+                    open
+                    variant="persistent"
+                    onMouseEnter={onHoverEnter}
+                    onMouseLeave={onHoverLeave}
+                    PaperProps={{
+                        sx: {
+                            width: NAVBAR.DASHBOARD_WIDTH,
+                            borderRightStyle: "dashed",
+                            bgcolor: "background.default",
+                            transition: (theme) =>
+                                theme.transitions.create("width", {
+                                    duration:
+                                        theme.transitions.duration.standard,
+                                }),
+                            ...(isCollapse && {
+                                width: NAVBAR.DASHBOARD_COLLAPSE_WIDTH,
+                            }),
+                            ...(collapseHover && {
+                                ...cssStyles(theme).bgBlur(),
+                                boxShadow: (theme) => theme.customShadows.z24,
+                            }),
                         },
                     }}
                 >
-                    <Container>
-                        <Stack
-                            spacing={3}
-                            sx={{
-                                pt: 3,
-                                pb: 2,
-                                flexShrink: 0,
-                            }}
-                        >
-                            <Stack
-                                direction="row"
-                                alignItems="center"
-                                justifyContent="space-between"
-                            >
-
-                                <Logo />
-                                <IconButton>
-                                    <HiChevronDoubleLeft />
-                                </IconButton>
-                            </Stack>
-                        </Stack>
-                        <NavSectionVertical navConfig={NavConfig} />
-                    </Container>
-                </Scrollbar>
-            </RootStyle>
-        </Drawer>
+                    {renderContent}
+                </Drawer>
+            )}
+        </RootStyle>
     );
 }

@@ -9,7 +9,7 @@ const RootStyle = styled(CardActionArea)(({ theme }) => ({
     backgroundColor: theme.palette.primary.darker,
     justifyContent: "start",
 }));
-export default function CustomCard({ title, description, icon }) {
+export default function CustomCard({ title, description, icon, link="#", component="a" }) {
     const theme = useTheme();
     return (
         <Card>
@@ -17,16 +17,19 @@ export default function CustomCard({ title, description, icon }) {
                 sx={{
                     bgcolor: theme.palette.primary.darker,
                 }}
+                component={component}
+                href={link}
+                target="_blank"
             >
                 <Box sx={{ ml: 3, color: "common.white" }}>
                     <Typography gutterBottom variant="h4">
                         {title}
                     </Typography>
-                    <Typography variant="body2" sx={{ opacity: 0.72 }}>
+                    {description && (<Typography variant="body2" sx={{ opacity: 0.72 }}>
                         {description}
-                    </Typography>
+                    </Typography>)}
                 </Box>
-                {icon}
+                {icon && icon}
             </RootStyle>
         </Card>
     );

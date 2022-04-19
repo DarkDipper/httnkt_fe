@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 ## Frontend : React (T.Phong)
-  - [ ] 1. Lần 1(0h 10/4 - 23h59 15/4):
+  - [x] 1. Lần 1(0h 10/4 - 23h59 15/4):
      - Danh sách các bài học + chương mục
      - Trang hiển thị bài học
      - Hệ thống tìm kiếm

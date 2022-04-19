@@ -33,9 +33,9 @@ export default function Logo({ disabledLink = false, sx }) {
                         y2="-3.5"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color={PRIMARY_DARK } />
-                        <stop offset="0.544792" stop-color={PRIMARY_MAIN} />
-                        <stop offset="1" stop-color={PRIMARY_LIGHT} />
+                        <stop stopColor={PRIMARY_DARK} />
+                        <stop offset="0.544792" stopColor={PRIMARY_MAIN} />
+                        <stop offset="1" stopColor={PRIMARY_LIGHT} />
                     </linearGradient>
                 </defs>
             </svg>

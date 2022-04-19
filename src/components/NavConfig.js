@@ -1,15 +1,16 @@
 import { AiOutlineHome, AiOutlineQuestionCircle, AiOutlineBook } from 'react-icons/ai';
 import {RiNewspaperFill} from 'react-icons/ri';
-const NavConfig = [
+const navConfig = [
     {
         subheader: 'Giới thiệu',
         items: [
             {
                 title: 'Trang chủ',
-                icon: <AiOutlineHome />
+                icon: <AiOutlineHome />,
+                link: '/homepage'
             },
             {
-                title: 'Điều nên biết',
+                title: 'Thông tin nhóm',
                 icon: <AiOutlineQuestionCircle />
             }
         ]
@@ -22,12 +23,26 @@ const NavConfig = [
                 icon: <AiOutlineBook />,
                 children: [
                     {
+                        id:0,
                         title: 'Giới thiệu về lập trình C++',
+                        listLesson: [
+                            {
+                                title:'Ký tự đặc biệt trong C++'
+                            },
+                            {
+                                title:'Modifier trong C++'
+                            },
+                            {
+                                title:'Template trong C++'
+                            },
+                        ]
                     },
                     {
+                        id:1,
                         title: 'Câu lệnh điều khiển C++',
                     },
                     {
+                        id:2,
                         title: 'C++ Function'
                     }
                 ]
@@ -39,9 +54,10 @@ const NavConfig = [
         items: [
             {
                 title: 'Kiểm tra',
-                icon: <RiNewspaperFill />
+                icon: <RiNewspaperFill />,
+                link: '/test'
             }
         ]
     }
 ];
-export default NavConfig;
+export default navConfig;

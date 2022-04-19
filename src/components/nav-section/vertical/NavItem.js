@@ -3,13 +3,12 @@ import { NavLink as RouterLink } from 'react-router-dom';
 import { Box, Link, ListItemText } from '@mui/material';
 //
 import { ListItemStyle, ListItemTextStyle, ListItemIconStyle } from './style';
-import { isExternalLink } from '..';
 import { IoIosArrowBack, IoIosArrowDown} from 'react-icons/io';
 
 // ----------------------------------------------------------------------
 
 export function NavItemRoot({ item, isCollapse, open = false, active, onOpen }) {
-  const { title, icon, children } = item;
+  const { title, icon, children,link } = item;
 
   const renderContent = (
     <>
@@ -32,7 +31,7 @@ export function NavItemRoot({ item, isCollapse, open = false, active, onOpen }) 
   }
 
   return (
-    <ListItemStyle component={Link} target="_blank" rel="noopener">
+    <ListItemStyle component={RouterLink} to={link?link:'/lesson'} rel="noopener">
       {renderContent}
     </ListItemStyle>
   );
@@ -41,7 +40,7 @@ export function NavItemRoot({ item, isCollapse, open = false, active, onOpen }) 
 // ----------------------------------------------------------------------
 
 export function NavItemSub({ item, open = false, active = false, onOpen }) {
-  const { title, path, info, children } = item;
+  const {id, title, path, info, children, lesson } = item;
 
   const renderContent = (
     <>
@@ -61,7 +60,7 @@ export function NavItemSub({ item, open = false, active = false, onOpen }) {
   }
 
   return (
-    <ListItemStyle>
+    <ListItemStyle component={RouterLink} to={`/listlesson/${id}`}>
       {renderContent}
     </ListItemStyle>
   )

@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
+import {
+    useNavigate,
+    useSearchParams,
+    useLocation,
+    NavLink,
+} from "react-router-dom";
 // @mui
 import { styled } from "@mui/material/styles";
 import {
@@ -44,18 +49,24 @@ export default function Searchbar() {
     const location = useLocation();
     const [searchParams, setSearchParams] = useSearchParams();
     const [isOpen, setOpen] = useState(false);
-    const [query, setQuery] = useState(searchParams.get("query"));
+    const [query, setQuery] = useState("");
 
     const handleOpen = () => {
         setOpen((prev) => !prev);
     };
-
     const handleClose = () => {
         setOpen(false);
     };
 
     const handleSearch = () => {
+        setQuery();
         handleClose();
+    };
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            navigate(`/search/${query}`,{replace:true});
+            handleSearch();
+        }
     };
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -68,6 +79,7 @@ export default function Searchbar() {
                 onSubmit={(e) => {
                     handleSubmit(e);
                 }}
+                onKeyDown={handleKeyDown}
             >
                 <div>
                     {!isOpen && (
@@ -94,7 +106,6 @@ export default function Searchbar() {
                                     </InputAdornment>
                                 }
                                 sx={{ mr: 1, fontWeight: "fontWeightBold" }}
-                                value={query}
                                 onChange={(e) => {
                                     setQuery(e.target.value);
                                 }}
@@ -103,6 +114,8 @@ export default function Searchbar() {
                                 type="submit"
                                 variant="contained"
                                 onClick={handleSearch}
+                                component={NavLink}
+                                to={`/search/${query}`}
                             >
                                 Search
                             </Button>

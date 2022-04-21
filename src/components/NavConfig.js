@@ -11,7 +11,8 @@ const navConfig = [
             },
             {
                 title: 'Thông tin nhóm',
-                icon: <AiOutlineQuestionCircle />
+                icon: <AiOutlineQuestionCircle />,
+                link:'/profile'
             }
         ]
     },
@@ -21,6 +22,8 @@ const navConfig = [
             {
                 title: 'Thư viện',
                 icon: <AiOutlineBook />,
+                getChapters:"https://52scxm.deta.dev/chapter",
+                // getChapters:"http://localhost:8000/chapter",
                 children: [
                     {
                         id:0,

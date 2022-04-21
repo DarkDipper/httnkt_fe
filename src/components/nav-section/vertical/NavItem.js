@@ -40,24 +40,13 @@ export function NavItemRoot({ item, isCollapse, open = false, active, onOpen }) 
 // ----------------------------------------------------------------------
 
 export function NavItemSub({ item, open = false, active = false, onOpen }) {
-  const {id, title, path, info, children, lesson } = item;
-
+  const {id,ten } = item;
   const renderContent = (
     <>
       <DotIcon active={active} />
-      <ListItemText disableTypography primary={title} />
-      {info && info}
-      {children && <ArrowIcon open={open} />}
+      <ListItemText disableTypography primary={ten} />
     </>
   );
-
-  if (children) {
-    return (
-      <ListItemStyle onClick={onOpen} activeSub={active} subItem>
-        {renderContent}
-      </ListItemStyle>
-    );
-  }
 
   return (
     <ListItemStyle component={RouterLink} to={`/listlesson/${id}`}>

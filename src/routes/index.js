@@ -4,6 +4,9 @@ import Dashboard from "../components/Dashboard";
 import ListLessonPage from "../pages/ListLessonPage";
 import LessonPage from "../pages/LessonPage";
 import TestPage from "../pages/TestPage";
+import ResultPage from "../pages/ResultPage";
+import ListSectionPage from "../pages/ListSectionPage";
+import ProfilePage from "../pages/ProfilePage";
 export default function Router() {
     return useRoutes([
         {
@@ -23,13 +26,25 @@ export default function Router() {
                     element: <ListLessonPage />,
                 },
                 {
-                    path: "/lesson",
+                    path: "/lesson/:id_content",
                     element: <LessonPage />,
                 },
                 {
                     path: "/test",
                     element: <TestPage />,
                 },
+                {
+                    path: "/result",
+                    element:<ResultPage/>,
+                },
+                {
+                    path: "/search/:keyword",
+                    element:<ListSectionPage/>
+                },
+                {
+                    path: "/profile",
+                    element:<ProfilePage/>
+                }
             ],
         },
     ]);

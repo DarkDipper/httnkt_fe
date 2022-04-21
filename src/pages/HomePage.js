@@ -28,6 +28,8 @@ export default function HomePage() {
                         }
                         icon={<GrGoogle style={styleIcon} />}
                         link="https://google.com"
+                        component={"a"}
+                        target={"_blank"}
                     ></CustomCard>
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -38,6 +40,8 @@ export default function HomePage() {
                         }
                         icon={<SiLeetcode style={styleIcon} />}
                         link="https://leetcode.com"
+                        component={"a"}
+                        target={"_blank"}
                     ></CustomCard>
                 </Grid>
             </Grid>

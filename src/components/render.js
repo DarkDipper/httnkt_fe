@@ -6,12 +6,12 @@ import {
     TableRow,
     TableCell,
     TableBody,
-    Divider
+    Typography,
 } from "@mui/material";
 import { CodeBlock, monokai } from "react-code-blocks";
 export const Code = ({ children }) => (
     <Grid
-        Container
+        container
         sx={{
             mt: 3,
             mb: 3,
@@ -53,14 +53,16 @@ export const TableCode = ({ children }) => {
             <Table aria-label="simple table">
                 {keys[0] !== "0" && (
                     <TableHead>
-                        {keys.map((item, index) => (
-                            <TableCell key={index}>{item}</TableCell>
+                        <TableRow>
+                            {keys.map((header, index) => (
+                                <TableCell key={index} align={"center"}>{header}</TableCell>
                         ))}
+
+                        </TableRow>
                     </TableHead>
                 )}
                 <TableBody>{rows}</TableBody>
             </Table>
-            <Divider/>
         </TableContainer>
     );
 };
@@ -75,9 +77,54 @@ export const Image = ({ src }) => {
         >
             <Grid item xs={2} />
             <Grid item xs={9}>
-                <img src={src} />
+                <img src={src} alt=" " />
             </Grid>
             <Grid item xs={1} />
         </Grid>
+    );
+};
+export const Section = ({ section }) => {
+    let contents = [];
+    for (
+        let i = 0;
+        i <
+        (section["noi_dung"].length > section["bo_sung"].length
+            ? section["noi_dung"].length
+            : section["bo_sung"].length);
+        i++
+    ) {
+        section["noi_dung"][i] &&
+            contents.push(
+                <Typography
+                    variant="body2"
+                    sx={{
+                        whiteSpace: "pre-line",
+                    }}
+                    key={i}
+                >
+                    {section["noi_dung"][i]}
+                </Typography>
+            );
+        if (section["bo_sung"][i]) {
+            if (section["bo_sung"][i]["Loai"] === "code") {
+                contents.push(
+                    <Code key={'Code'+i.toString()}>{section["bo_sung"][i]["noi_dung"]}</Code>
+                );
+            } else if (section["bo_sung"][i]["Loai"] === "img") {
+                contents.push(
+                    <Image src={section["bo_sung"][i]["noi_dung"]} key={'Image'+i.toString()} />
+                );
+            } else if (section["bo_sung"][i]["Loai"] === "table") {
+                contents.push(
+                    <TableCode key={'TableCode'+i.toString()}>{section["bo_sung"][i]["noi_dung"]}</TableCode>
+                );
+            }
+        }
+    }
+    return (
+        <>
+            <Typography variant="h4">{section["ten_muc"]}</Typography>
+            {contents}
+        </>
     );
 };

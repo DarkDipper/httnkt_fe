@@ -7,7 +7,7 @@
         {
             "ten_muc": "Phương thức tham trị trong C++ ",
             "noi_dung": [
-                "Phương thức tham trị trong C++ của các đối số truyền vào một hàm sao chép giá trị thực của một đối số vào tham số chính thức của hàm. Trong trường hợp này, các thay đổi được thực hiện cho tham số bên trong hàm không ảnh hưởng đến đối số.\nTheo mặc định, lập trình C++ sử dụng call by value để chuyển đối số. Nói chung, nó có nghĩa là mã trong một hàm không thể thay đổi các đối số được sử dụng để gọi hàm. Hãy xem xét hàm swap() như sau.\n",
+                "Phương thức tham trị trong C++ của các đối số truyền vào một hàm sao chép giá trị thực của một đối số vào tham số chính thức của hàm. Trong trường hợp này, các thay đổi được thực hiện cho tham số bên trong hàm không ảnh hưởng đến đối số.\nTheo mặc định, lập trìh C++ sử dụng call by value để chuyển đối số. Nói chung, nó có nghĩa là mã trong một hàm không thể thay đổi các đối số được sử dụng để gọi hàm. Hãy xem xét hàm swap() như sau.\n",
                 "Kết quả:\n",
                 "Kết quả trên cho thấy rằng không có thay đổi trong các giá trị, mặc dù chúng đã được thay đổi bên trong hàm.\n"
             ],

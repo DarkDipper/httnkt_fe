@@ -5,9 +5,11 @@ import { useTheme } from "@mui/material/styles";
 import navConfig from "../components/NavConfig";
 import CustomCard from "../components/CustomCard";
 import { GiBookshelf } from "react-icons/gi";
+import { NavLink } from "react-router-dom";
+const axios = require("axios");
 export default function ListLessonPage() {
     const theme = useTheme();
-    const idParam = parseInt(useParams().id);
+    const idParam = useParams().id;
     const [listLessons, setlistLessons] = useState([]);
     const [Title, setTitle] = useState("");
     const styleIcon = {
@@ -19,12 +21,12 @@ export default function ListLessonPage() {
         color: theme.palette.common.white,
     };
     useEffect(() => {
-        const { id, title, listLesson } = navConfig
-            .find((item) => item.subheader === "Lý thuyết")
-            .items[0].children.find((item) => item.id === idParam);
-        // console.log(listLesson);
-        setlistLessons(listLesson);
-        setTitle(title);
+        const callData = async () => {
+            const response = await axios.get(`https://52scxm.deta.dev/content/${idParam}`);
+            // console.log(response.data);
+            setlistLessons(response.data["list_data"]);
+        };
+        callData();
     }, [idParam]);
     return (
         <>
@@ -38,8 +40,11 @@ export default function ListLessonPage() {
                         return (
                             <Grid key={index} item xs={12} md={6}>
                                 <CustomCard
-                                    title={item.title}
-                                    icon={<GiBookshelf style={styleIcon} />}
+                                    to={`/lesson/${item["id"]}`}
+                                    component={NavLink}
+                                    title={item["ten_noi_dung"]}
+                                    icon={<GiBookshelf style={styleIcon} 
+                                    />}
                                 />
                             </Grid>
                         );

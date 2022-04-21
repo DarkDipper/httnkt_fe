@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { useState, useRef, useEffect } from "react";
-export default function ClockCountDown() {
+export default function ClockCountDown({setTimeOut, setOpen}) {
     const [minute, setMinute] = useState(20);
     const [second, setSecond] = useState(0);
     let interval = useRef();
@@ -10,6 +10,10 @@ export default function ClockCountDown() {
             const minuteLeft = Math.floor(timeLeft / 60);
             const secondLeft = timeLeft - minuteLeft * 60;
             if (timeLeft <= 0) {
+                setMinute(0);
+                setSecond(0);
+                setTimeOut(true);
+                setOpen(true);
                 clearInterval(interval.current);
             } else {
                 // console.log(minuteLeft, secondLeft);
@@ -26,7 +30,11 @@ export default function ClockCountDown() {
     });
     return (
         <>
-        <Typography variant="h1">{minute.toString().padStart(2,'0')+" : "+second.toString().padStart(2,'0')}</Typography>
+            <Typography variant="h1">
+                {minute.toString().padStart(2, "0") +
+                    " : " +
+                    second.toString().padStart(2, "0")}
+            </Typography>
         </>
     );
 }

@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Section } from "../components/render";
 const axios = require("axios");
-//4501104147@student.hcmue.edu.vn
 export default function ListSectionPage() {
     const [keyWord, setKeyWord] = useState(useParams().keyword);
     const [listSection, setListSection] = useState([]);
     useEffect(() => {
+        console.log(keyWord);
         const callData = async () => {
             const response = await axios.get(`https://52scxm.deta.dev/find/${keyWord}`);
             setListSection(response.data["list_data"]);
@@ -16,6 +16,7 @@ export default function ListSectionPage() {
     },[keyWord]);
     return (
         <Box>
+            <Typography variant="h4">{"Kết quả tìm kiểm về : "+keyWord}</Typography>
             {listSection.map((item, index) => {
                     return (
                         <Card key={index} sx={{

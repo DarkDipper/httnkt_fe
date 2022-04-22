@@ -7,6 +7,7 @@ import TestPage from "../pages/TestPage";
 import ResultPage from "../pages/ResultPage";
 import ListSectionPage from "../pages/ListSectionPage";
 import ProfilePage from "../pages/ProfilePage";
+import PageOne from "../pages/PageOne";
 export default function Router() {
     return useRoutes([
         {
@@ -44,6 +45,10 @@ export default function Router() {
                 {
                     path: "/profile",
                     element:<ProfilePage/>
+                },
+                {
+                    path: "/one",
+                    element:<PageOne/>
                 }
             ],
         },

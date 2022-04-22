@@ -29,7 +29,7 @@ export const ICON = {
 export const defaultSettings = {
     themeMode: "dark",
     themeDirection: "ltr",
-    themeColorPresets: "cyan",
+    themeColorPresets: "blue",
     themeLayout: "horizontal",
     themeStretch: false,
     pageWidth: 100,

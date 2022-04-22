@@ -33,11 +33,11 @@ export default function Welcome({ displayName }) {
       >
         <Typography gutterBottom variant="h4">
           Yahallo,
-          <br /> {!displayName ? 'mother fucker' : displayName}!
+          <br /> {!displayName ? 'lập trình viên trẻ tuổi' : displayName}!
         </Typography>
 
         <Typography variant="body1" sx={{ pb: { xs: 3, xl: 5 }, maxWidth: 480, mx: 'auto' }}>
-        Chào mừng các bạn tới project của nhóm Danh Trung và những người bạn. Nếu có gặp bug hay lỗi gì này thì làm ơn đừng report và bỏ trang web này nhé :)))
+        Chào mừng các bạn tới project của nhóm Danh Trung và những người bạn. Nếu có gặp bug hay lỗi gì này thì đừng report và bỏ trang web này nhé :)))
         </Typography>
       </CardContent>
 

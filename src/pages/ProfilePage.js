@@ -30,7 +30,7 @@ export default function ProfilePage() {
                             />
                             <CardContent>
                                 <Typography variant="h5">
-                                    Lê Quốc Vinh
+                                    Lê Ái Quốc Vinh
                                 </Typography>
                                 <Typography variant="h6">
                                     MSSV : 4501104277

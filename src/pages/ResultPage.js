@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import { MotivationIllustration } from "../assets";
 import { useLocation } from "react-router-dom";
 import { Section } from "../components/render";
+import { useTheme } from "@mui/material";
 const axios = require("axios");
 export default function ResultPage() {
+    const theme = useTheme();
     const [result, setResult] = useState();
     const [pass, setPass] = useState(false);
     const location = useLocation();
@@ -63,22 +65,35 @@ export default function ResultPage() {
                         <Typography variant="h6">
                             Hãy xem lại nội dung gợi ý và tiếp tục cố gắng nhé
                         </Typography>
-                        {result["detail"].map((item) =>
-                            item["content"].map((muc,index) => {
-                                return (
-                                    <Card
-                                        key={index}
+                        {result["detail"].map((item,i) => {
+                            return (
+                                <>
+                                    <Typography variant="h4"
                                         sx={{
                                             mt: 3,
+                                            color: theme.palette.primary.main,
                                         }}
+                                        key={i}
                                     >
-                                        <CardContent>
-                                            <Section section={muc} />
-                                        </CardContent>
-                                    </Card>
-                                );
-                            })
-                        )}
+                                        {item["ten_noi_dung"]}
+                                    </Typography>
+                                    {item["content"].map((muc, index) => {
+                                        return (
+                                            <Card
+                                                key={"card"+index.toString()}
+                                                sx={{
+                                                    mt: 3,
+                                                }}
+                                            >
+                                                <CardContent>
+                                                    <Section section={muc} />
+                                                </CardContent>
+                                            </Card>
+                                        );
+                                    })}
+                                </>
+                            );
+                        })}
                     </>
                 ))}
         </>

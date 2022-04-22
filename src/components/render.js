@@ -31,6 +31,9 @@ export const Code = ({ children }) => (
     </Grid>
 );
 export const TableCode = ({ children }) => {
+    if (children) {
+        return<></>
+    }
     const keys = Object.keys(children);
     let rows = [];
     for (let i = 0; i < children[keys[0]].length; i++) {
@@ -51,7 +54,7 @@ export const TableCode = ({ children }) => {
             }}
         >
             <Table aria-label="simple table">
-                {keys[0] !== "0" && (
+                {keys[0] != "0" && (
                     <TableHead>
                         <TableRow>
                             {keys.map((header, index) => (
